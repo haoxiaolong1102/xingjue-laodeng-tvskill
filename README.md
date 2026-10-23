@@ -1,8 +1,18 @@
-# xiaomi-tv-skill
+# 星爵老灯tvskill
 
-把一台红米电视的实际改造过程，整理成可复用的 Codex skill：定位广告来源，换大时钟主页和背景，优化后台，安装电视应用，并保留恢复方法。
+> 欢迎使用星爵老灯tvskill！这是“星爵老灯讲AI”的第一个公开 Skill。如果使用中有不合适的地方，欢迎到抖音关注“星爵老灯讲AI”，留言反馈、点个赞。谢谢大家的支持！
 
-它是一套由 agent 按设备证据执行的流程，附带 ADB 工具；不是点一下就适配所有固件的刷机包。
+让开机后的大屏更清爽，让遥控器用起来更顺手。
+
+**星爵老灯tvskill** 把一台红米电视的实际改造经验，整理成可复用的 Codex Skill：用 **Tigris** 打造大时钟主页和个性背景，结合 **LibreTV 与 DpadTV** 配置观影入口，再通过 ADB 排查广告触发与后台负担。先看设备和证据，再做能恢复的修改。
+
+## Tigris + LibreTV，各司其职
+
+- **Tigris 管主页**：大时钟、应用入口、自定义背景和 Home 守护，打开电视就看到喜欢的桌面。
+- **LibreTV 管观影服务**：连接用户选择的 LibreTV 后端；需要遥控器操作时，可搭配第三方电视客户端 DpadTV。LibreTV 本身是 Web／服务端项目，DpadTV 不是它的官方 APK。
+- **这个 Skill 把流程串起来**：识别型号、核对兼容性、排查开机与静置广告、优化后台、安装配置，再检查真实画面和声音，留下原值与恢复记录。
+
+Tigris、LibreTV 和 DpadTV 是各自独立的开源项目，本 Skill 整理它们在电视改造中的使用方法。适配以实际型号与固件证据为准。
 
 ## 包含什么
 
@@ -17,16 +27,21 @@
 需要支持 skills 的 Codex 环境、Python **3.10+**、[Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) 中的 `adb`、Git，以及同网且由你授权调试的 Android 电视。
 
 ```sh
-git clone https://github.com/haoxiaolong1102/xiaomi-tv-skill.git \
-  "${CODEX_HOME:-$HOME/.codex}/skills/xiaomi-tv-skill"
+TV_SKILL_DIR="${CODEX_HOME:-$HOME/.codex}/skills/xingjue-laodeng-tvskill"
+git clone https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill.git "$TV_SKILL_DIR" &&
+  python3 "$TV_SKILL_DIR/scripts/welcome.py"
 ```
+
+按以上命令安装成功后，终端会显示欢迎语；开始电视改造任务时，Skill 也会在会话开头欢迎一次，然后继续处理你的请求。
 
 在能发现该 skill 的会话里直接说：
 
-> 使用 $xiaomi-tv-skill，检查我的红米电视静置后跳视频的问题，保留语音、投屏、HDMI 和全部应用功能，先诊断再做可恢复的优化。
+> 使用 $xingjue-laodeng-tvskill，检查我的红米电视静置后跳视频的问题，保留语音、投屏、HDMI 和全部应用功能，先诊断再做可恢复的优化。
 
 或要求定制主页、安装用户选定客户端；无需每次做全套。
 已经安装过时，在该目录检查自己的改动后 `git pull --ff-only`，不要强制覆盖本地文件。
+
+旧版 `xiaomi-tv-skill` 用户更新时，先保留本地 `state/` 和自己的改动，将技能目录改名为 `xingjue-laodeng-tvskill`，把 origin 更新到本页新仓库地址，再拉取更新；避免同时保留两份技能。旧仓库链接会跳转到新地址。
 
 ADB 连接需电视端打开调试并允许计算机；菜单因固件不同。先 `adb devices -l` 确认设备，网络调试按实际地址连接。不要向公网开放 ADB。
 

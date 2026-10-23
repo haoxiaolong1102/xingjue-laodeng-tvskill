@@ -1,4 +1,4 @@
 interface:
-  display_name: "小米电视改造"
-  short_description: "小米与红米电视的广告排查、桌面定制、后台优化、应用安装及恢复"
-  default_prompt: "使用 $xiaomi-tv-skill，根据电视的实际型号与固件，完成可恢复的广告排查、桌面定制和后台优化，并验证效果。"
+  display_name: "星爵老灯tvskill"
+  short_description: "结合 Tigris 与 LibreTV，完成小米红米电视桌面、观影配置和后台优化"
+  default_prompt: "使用 $xingjue-laodeng-tvskill，根据电视的实际型号与固件，完成可恢复的广告排查、Tigris 桌面定制、LibreTV 观影配置和后台优化，并验证效果。"
