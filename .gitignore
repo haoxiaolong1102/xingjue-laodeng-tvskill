@@ -23,6 +23,16 @@ assets/
 *.key
 *.pem
 *.keystore
+*.p12
+*.jks
+build/
+out/
+toolchain/
+private/
+signing/
+signing-password.txt
+# Original helper manifest is source; generated XML and user preferences stay private.
+!tools/libretv-bridge/AndroidManifest.xml
 __pycache__/
 *.py[cod]
 .DS_Store

@@ -67,7 +67,7 @@ class Adb:
     def run(self, *args: str) -> str:
         try:
             result = subprocess.run(self.base + list(args), capture_output=True,
-                                    text=True, timeout=self.timeout)
+                                    text=True, errors="replace", timeout=self.timeout)
         except (OSError, subprocess.TimeoutExpired) as exc:
             raise TVError(f"ADB transport failed: {exc}") from exc
         message = result.stdout + "\n" + result.stderr
@@ -82,6 +82,18 @@ class Adb:
     def shell(self, *args: str) -> str:
         # adb shell joins its arguments: quote at the remote shell boundary as well.
         return self.run("shell", shlex.join(list(args)))
+
+    def shell_bytes(self, *args: str, input_data: bytes | None = None) -> bytes:
+        """Binary stdin/stdout through a non-PTY shell; never interpolate payloads."""
+        try:
+            result = subprocess.run(self.base + ["shell", "-T", shlex.join(list(args))],
+                                    input=input_data, capture_output=True, timeout=self.timeout)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            raise TVError("ADB byte transport interrupted; check the private record") from exc
+        if result.returncode:
+            # stdout may contain private preferences. Do not include it in exceptions.
+            raise TVError("ADB byte command failed: " + result.stderr.decode("utf-8", "replace")[:500])
+        return result.stdout
 
     def ready(self) -> None:
         if self.run("get-state").strip() != "device":

@@ -16,4 +16,15 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: python -m unittest discover -s tests -v
-      - run: python -m compileall -q scripts tests
+      - run: python -m compileall -q scripts tests tools/libretv-bridge/build.py
+  android-helper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install official Android API 28 and build tools
+        run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-28" "build-tools;35.0.0"'
+      - name: Build and verify the original helper (no TV connection)
+        run: >-
+          python3 tools/libretv-bridge/build.py --sdk "$ANDROID_HOME"
+          --build-tools "$ANDROID_HOME/build-tools/35.0.0"
+          --java-home "$JAVA_HOME_17_X64" --state-dir "$RUNNER_TEMP/tv-bridge"

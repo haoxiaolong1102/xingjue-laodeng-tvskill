@@ -17,7 +17,7 @@ def main():
     path = Path(name)
     state = json.loads(path.read_text())
     args = sys.argv[3:]
-    command = shlex.split(args[1]) if args[:1] == ["shell"] else args
+    command = shlex.split(args[2] if args[1] == "-T" else args[1]) if args[:1] == ["shell"] else args
     state.setdefault("trace", []).append(command)
 
     def save():
@@ -67,7 +67,46 @@ def main():
         while True:
             time.sleep(0.1)
     elif command == ["dumpsys", "activity", "activities"]:
-        print("mResumedActivity: ActivityRecord{abc u0 com.leslie.tvhome/.HomeActivity t1}")
+        print("mResumedActivity: ActivityRecord{abc u0 " + state.get("foreground", "com.leslie.tvhome/.HomeActivity") + " t1}")
+    elif command == ["dumpsys", "package", "com.dpadtv.client"]:
+        print("flags=[ DEBUGGABLE ]" if state.get("dpad_debuggable", True) else "flags=[ HAS_CODE ]")
+    elif command == ["am", "force-stop", "com.dpadtv.client"]:
+        state["dpad_running"] = False
+        save()
+    elif command == ["sh", "-c", "pidof com.dpadtv.client || true"]:
+        print("1234" if state.get("dpad_running") else "")
+    elif command[:2] == ["run-as", "com.dpadtv.client"]:
+        operation = command[2:]
+        files = state.setdefault("preference_files", {})
+        if operation == ["id"]:
+            print("uid=fixture")
+        elif operation[:1] == ["cat"]:
+            if operation[1] not in files:
+                print("No such file", file=sys.stderr)
+                return 1
+            sys.stdout.buffer.write(files[operation[1]].encode("utf-8"))
+        elif operation[:2] == ["sh", "-c"] and operation[2].startswith("umask 077; cat > "):
+            target = shlex.split(operation[2][len("umask 077; cat > "):])[0]
+            value = sys.stdin.buffer.read().decode("utf-8")
+            if state.get("truncate_probe") and ".tvskill-probe-" in target:
+                value = value[:-1]
+            files[target] = value
+            save()
+        elif operation[:1] == ["mv"]:
+            files[operation[2]] = files.pop(operation[1])
+            save()
+            if state.get("fail_after_preference_move"):
+                print("simulated disconnect after rename", file=sys.stderr)
+                return 1
+        elif operation[:2] == ["rm", "-f"]:
+            for target in operation[2:]:
+                files.pop(target, None)
+            save()
+        else:
+            print("Unsupported run-as fixture operation", file=sys.stderr)
+            return 1
+    elif command == ["invalid-utf8-log"]:
+        sys.stdout.buffer.write(b"log\xffline")
     elif command == ["dumpsys", "power"]:
         print("mWakefulness=Awake\nmLastUserActivityTime=100\nmLastUserActivityTimeNoChangeLights=100")
     elif command == ["cat", "/proc/meminfo"]:

@@ -22,9 +22,11 @@ adb -s "$TV_SERIAL" install -r <verified-release.apk>
 
 ## 只有已证明 debuggable 时的有限配置手段
 
-案例 release 实际带 `DEBUGGABLE` 标记，`run-as com.dpadtv.client` 可访问**新安装客户端自身**的 SharedPreferences。在 UI 输入故障后，停止该客户端、备份其 `dpadtv_native.xml`，合并修改必要字段、保留其余值，再启动验证。配置应通过 stdin／本地私有文件传入，避免密码出现在命令日志或截图。
+案例 release 实际带 `DEBUGGABLE` 标记，`run-as com.dpadtv.client` 可访问**这个客户端自身**的 SharedPreferences。UI 不便操作时，可用 `scripts/tv_dpad_config.py` 备份、修改或恢复服务器地址。它先检查产物、设备和播放状态，保存完整私有备份，经 `adb shell -T` 的 UTF-8 stdin 写入临时文件，核对暂存和最终读回；只改 `server_url`。不要把完整 XML、密码或历史插入 shell 命令。
 
-这是个别产物的能力，不是通用安装前提；非 debuggable 版本就走 UI。不要尝试 root 或用这个方法访问其他应用的私有数据。正在播放时不擅自 force-stop；配置记录和凭据不公开。恢复用该客户端的原偏好备份或 UI；settings helper 不覆盖 app 私有配置。
+这是个别产物的能力，不是通用安装前提；非 debuggable 版本就走 UI。不要尝试 root 或用这个方法访问其他应用的私有数据。先正常退出播放器以保存最新进度；配置记录和凭据不公开。日常回退只把原地址合并到**最新**配置，保留修复后新增的观看记录；完整旧备份留作灾难恢复。settings helper 不覆盖 app 私有配置。
+
+出现请求失败、HTTP 502 或重启后失联时，转 [连接修复流程](libretv-repair.md)。先区分服务器、客户端接口和实际媒体问题，不把网页 HTTP 200 当作可播放。
 
 ## UI 与播放判断
 

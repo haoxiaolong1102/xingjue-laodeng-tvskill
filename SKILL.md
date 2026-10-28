@@ -1,6 +1,6 @@
 ---
 name: xingjue-laodeng-tvskill
-description: 星爵老灯tvskill，改造用户自己的小米、红米 Android 电视：通过 ADB 与原机 APK/运行日志定位开机广告、静置屏保跳转，配置 Tigris 桌面和壁纸，连接 LibreTV／DpadTV 观影方案，在保留功能的前提下优化后台，安装电视应用，并记录原值、验证和恢复。适用于电视去广告、主页定制、静置弹广告、卡顿排查、LibreTV/DpadTV 安装；不承诺跨固件通用或去除视频应用内部广告。
+description: 星爵老灯tvskill，改造用户自己的小米、红米 Android 电视：通过 ADB 与原机 APK/运行日志定位开机广告、静置屏保跳转，配置 Tigris 桌面和壁纸，安装及修复 LibreTV／DpadTV（请求失败、HTTP 502、重启后连接失效），在保留功能的前提下优化后台，并记录原值、验证和恢复。不承诺跨固件通用或去除视频应用内部广告。
 ---
 
 # 星爵老灯tvskill
@@ -37,6 +37,7 @@ python3 "$TV_SKILL_DIR/scripts/tv_snapshot.py" --serial "$TV_SERIAL" --output "$
 | 大时钟桌面、Home 键、开机回桌面、背景图 | 读 [Tigris 与壁纸](references/launcher-wallpaper.md) |
 | 卡顿、内存、要求所有功能保留 | 读 [后台与性能](references/performance.md) |
 | LibreTV／DpadTV 或其他 APK | 读 [应用安装与界面验证](references/apps-and-ui.md) |
+| DpadTV 请求失败、演示站 502、重启后失联 | 读 [LibreTV 连接修复与本机服务](references/libretv-repair.md) |
 
 同时包含多个模式时按基线 → 广告根因 → 桌面 → 后台 → 应用 → 验证推进。
 不要安装与请求无关的应用，也不要把某一型号的包名列表套到所有电视。
@@ -88,6 +89,7 @@ python3 "$TV_SKILL_DIR/scripts/tv_idle_verify.py" --serial "$TV_SERIAL" --output
 
 - 检查 result 的每个 checks：有输入、丢日志、休眠、重启、前台不符或时长不足都不能判通过。日志即使正常也只覆盖本次窗口；`-T 1` 可能包含开始前最后一条日志，命中时核对时间。
 - 应用播放检查解码器／音轨／进度，再由用户确认画面和声音。硬件视频层可能截成黑色。
+- 修复开机恢复时，先记录新 boot ID、服务 PID／绑定及接口可用性，再手动打开应用；先启动辅助应用会掩盖自启动失败。移除电脑端测试转发后复测客户端，恢复所有临时调试偏好。
 - 保留功能模式检查实体遥控器、语音、投屏、HDMI、联网和播放。未实际测试的项标为未验证，不能由“包还在”推断可用。
 
 ## 6. 交付
