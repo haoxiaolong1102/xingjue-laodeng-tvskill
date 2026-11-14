@@ -1,6 +1,6 @@
 ---
 name: xingjue-laodeng-tvskill
-description: 星爵老灯tvskill，改造用户自己的小米、红米 Android 电视：通过 ADB 与原机 APK/运行日志定位开机广告、静置屏保跳转，配置 Tigris 桌面和壁纸，安装及修复 LibreTV／DpadTV（请求失败、HTTP 502、重启后连接失效），在保留功能的前提下优化后台，并记录原值、验证和恢复。不承诺跨固件通用或去除视频应用内部广告。
+description: 星爵老灯tvskill，改造用户自己的小米、红米 Android 电视。通过 ADB 和原机日志定位开机广告、静置屏保跳转，配置 Tigris 桌面与壁纸，安装及修复 LibreTV／DpadTV（更新后重连、请求失败、HTTP 502、重启后失联），在保留功能的前提下优化后台，并记录原值、验证和恢复。
 ---
 
 # 星爵老灯tvskill
@@ -37,14 +37,14 @@ python3 "$TV_SKILL_DIR/scripts/tv_snapshot.py" --serial "$TV_SERIAL" --output "$
 | 大时钟桌面、Home 键、开机回桌面、背景图 | 读 [Tigris 与壁纸](references/launcher-wallpaper.md) |
 | 卡顿、内存、要求所有功能保留 | 读 [后台与性能](references/performance.md) |
 | LibreTV／DpadTV 或其他 APK | 读 [应用安装与界面验证](references/apps-and-ui.md) |
-| DpadTV 请求失败、演示站 502、重启后失联 | 读 [LibreTV 连接修复与本机服务](references/libretv-repair.md) |
+| DpadTV 更新后重连、请求失败、演示站 502、重启后失联 | 读 [LibreTV 连接修复与本机服务](references/libretv-repair.md) |
 
 同时包含多个模式时按基线 → 广告根因 → 桌面 → 后台 → 应用 → 验证推进。
 不要安装与请求无关的应用，也不要把某一型号的包名列表套到所有电视。
 
 ## 3. 用原机证据决定修改
 
-- 已验证配置仅覆盖 Redmi A50 2025／MiTV-ASTP0／Android 9／OS2.0.19.0.PSTAATV。匹配型号但固件不同也要重查，不直接套写。
+- 广告与静置设置的实测固件为 Redmi A50 2025／MiTV-ASTP0／Android 9／OS2.0.19.0.PSTAATV。固件更新后重新取基线，依据对应版本的证据决定系统设置。[DpadTV 应用兼容范围](references/libretv-repair.md#脱敏真机验证2026-11-14)
 - 对未知设置：从原机 `pm path` 找 APK，pull 到本地，记录 SHA-256、版本、类／方法和分支。使用可用的 REA／逆向工具检查原机产物，结合日志确认。源码主分支不等于已安装 APK。
 - 系统 APK 只有资源、没有目标 DEX 方法时，明确证据不足；保留组件，不能凭包名、时间接近或搜索片段认定因果。
 - “启动了屏保”“请求了广告”“用户看见广告”是三种证据。分开报告，不扩大结论。
