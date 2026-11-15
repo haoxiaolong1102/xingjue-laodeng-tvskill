@@ -1,4 +1,4 @@
 interface:
   display_name: "星爵老灯tvskill"
-  short_description: "结合 Tigris 与 LibreTV，完成小米红米电视桌面、观影配置和后台优化"
-  default_prompt: "使用 $xingjue-laodeng-tvskill，根据电视的实际型号与固件，完成可恢复的广告排查、Tigris 桌面定制、LibreTV 观影配置和后台优化，并验证效果。"
+  short_description: "为小米红米电视配置 Tigris 桌面与 Marco Movie TV 或 LibreTV，排查广告和后台卡顿"
+  default_prompt: "使用 $xingjue-laodeng-tvskill，根据电视型号与固件，帮我排查广告和后台卡顿、定制 Tigris 桌面，或配置我选的 Marco Movie TV／LibreTV，并验证效果。"

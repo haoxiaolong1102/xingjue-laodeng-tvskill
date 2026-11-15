@@ -1,6 +1,6 @@
 ---
 name: xingjue-laodeng-tvskill
-description: 星爵老灯tvskill，改造用户自己的小米、红米 Android 电视。通过 ADB 和原机日志定位开机广告、静置屏保跳转，配置 Tigris 桌面与壁纸，安装及修复 LibreTV／DpadTV（更新后重连、请求失败、HTTP 502、重启后失联），在保留功能的前提下优化后台，并记录原值、验证和恢复。
+description: 星爵老灯tvskill，改造用户自己的小米、红米 Android 电视。通过 ADB 和原机日志排查开机广告与静置跳转，配置 Tigris 桌面和壁纸，安装 Marco Movie TV 并导入 AppleCMS 片源作为 LibreTV 替代方案，处理 LibreTV／DpadTV 请求失败、502 和重启断连。保留电视功能，验证可恢复的后台优化。
 ---
 
 # 星爵老灯tvskill
@@ -36,6 +36,7 @@ python3 "$TV_SKILL_DIR/scripts/tv_snapshot.py" --serial "$TV_SERIAL" --output "$
 | 开机广告、静置跳视频、系统广告开关 | 读 [已验证固件与广告路径](references/firmware-and-ads.md)，先区别触发场景 |
 | 大时钟桌面、Home 键、开机回桌面、背景图 | 读 [Tigris 与壁纸](references/launcher-wallpaper.md) |
 | 卡顿、内存、要求所有功能保留 | 读 [后台与性能](references/performance.md) |
+| Marco Movie TV、切换到 LibreTV 替代方案、为替代客户端导入片源 | 读 [Marco Movie TV 安装与片源配置](references/marco-movie-tv.md) |
 | LibreTV／DpadTV 或其他 APK | 读 [应用安装与界面验证](references/apps-and-ui.md) |
 | DpadTV 更新后重连、请求失败、演示站 502、重启后失联 | 读 [LibreTV 连接修复与本机服务](references/libretv-repair.md) |
 

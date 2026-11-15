@@ -4,22 +4,22 @@
 
 让开机后的大屏更清爽，让遥控器用起来更顺手。
 
-**星爵老灯tvskill** 把一台红米电视的实际改造经验，整理成可复用的 Codex Skill：用 **Tigris** 打造大时钟主页和个性背景，结合 **LibreTV 与 DpadTV** 配置观影入口，再通过 ADB 排查广告触发与后台负担。先看设备和证据，再做能恢复的修改。
+**星爵老灯tvskill** 把一台红米电视的实际改造经验整理成可复用的 Codex Skill。用 **Tigris** 打造大时钟主页和个性背景，通过 ADB 排查广告触发与后台负担，还可以配置 **Marco Movie TV** 或 **LibreTV／DpadTV** 观影入口。
 
-## Tigris + LibreTV，各司其职
+## 桌面与观影
 
-- **Tigris 管主页**：大时钟、应用入口、自定义背景和 Home 守护，打开电视就看到喜欢的桌面。
-- **LibreTV 管观影服务**：连接用户选择的 LibreTV 后端；需要遥控器操作时，可搭配第三方电视客户端 DpadTV。LibreTV 本身是 Web／服务端项目，DpadTV 不是它的官方 APK。
-- **这个 Skill 把流程串起来**：识别型号、核对兼容性、排查开机与静置广告、优化后台、安装配置，再检查真实画面和声音，留下原值与恢复记录。
+- **Tigris** 提供大时钟、应用入口、自定义背景和 Home 守护，打开电视就能看到自己设置的桌面。
+- **Marco Movie TV** 可作为 LibreTV 的替代观影入口。电视端直接导入你已有的 AppleCMS 点播接口，用遥控器浏览电影和剧集海报墙。
+- **LibreTV／DpadTV** 适合已有 LibreTV 后端的用户。LibreTV 提供 Web 服务，DpadTV 是可用遥控器操作的第三方电视客户端。
 
-Tigris、LibreTV 和 DpadTV 是各自独立的开源项目，本 Skill 整理它们在电视改造中的使用方法。适配以实际型号与固件证据为准。
+Tigris、Marco Movie、LibreTV 和 DpadTV 是独立维护的开源项目。本 Skill 整理它们在电视上的安装、配置与验证流程。
 
 ## 包含什么
 
 - **广告排查**：区别开机广告、OEM 相册屏保、应用内部广告，沿原机 APK 与日志找触发点。
 - **Tigris 桌面**：Home 守护、开机进入桌面、16:9 个性背景与时钟留白。
 - **后台优化**：优先保留语音、投屏、HDMI、遥控器与播放功能，按场景检查内存、CPU 和进程重启。
-- **电视应用**：以 LibreTV／第三方 DpadTV 客户端为案例，检查来源与兼容性并验证真实播放。
+- **电视应用**安装前核对发布源和设备兼容性，配置后验证首页、点播和续播。[Marco Movie TV 安装与配置](references/marco-movie-tv.md)
 - **连接故障修复**：区分演示站 502、接口不兼容和媒体失效；可使用原创电视本机连接服务，检查重启自动恢复，保留原片源与观看记录。
 - **恢复与验证**：设备绑定的设置计划、原值记录、冲突检查、新鲜 UI 截图、真实静置观察。
 
@@ -67,7 +67,11 @@ python3 scripts/tv_snapshot.py --serial "$TV_SERIAL" --output state/before.json
 
 各脚本支持 `--help`、`--adb`。详细执行和恢复步骤见 [SKILL.md](SKILL.md)；未知固件不能直接照抄示例设置。
 
-## 演示站失效时
+## 改用 Marco Movie TV
+
+从项目发布页选择 `-android-tv.apk`，确认电视的 Android 版本和 CPU 架构。安装后依次选择「导入我的配置」→「遥控输入」，填入你有权访问的 AppleCMS 点播接口，点「导入地址」。首页加载后，从电影分类选一部实际试播。片库和播放线路由导入的片源提供。[Marco Movie TV 安装、配置与红米实测](references/marco-movie-tv.md)
+
+## 继续使用 LibreTV／DpadTV
 
 “请求失败”需要先查服务、客户端接口和媒体地址。本次实测遇到原演示站 HTTP 502；修复后仍使用原 DpadTV，把连接服务放在电视本机运行，电脑不必一直开着。
 
@@ -88,6 +92,7 @@ python3 scripts/tv_snapshot.py --serial "$TV_SERIAL" --output state/before.json
 | 播放 | DpadTV 1.2.0，用户确认实际画面和声音正常 |
 | 连接修复（2026-10-28） | 原客户端安装包保持不变；本机服务在第二次授权重启后自动恢复，推荐／搜索／详情／续播通过复测，原历史保留 |
 | 更新后重连（2026-11-14） | HyperOS OS3.0.11.0.PSTAATV，DpadTV 原位升至 1.3.0，使用本机服务 1.2 验证推荐、搜索、视频首帧、音轨和续播，历史与原进度核对一致 |
+| Marco Movie TV（2026-11-14） | 同一台红米的 Android 9／32 位 ARM，电视版 0.5.23 直连既有 AppleCMS 片源，验证分类海报墙、1080p H.264 硬解、音轨和应用重开后续播 |
 
 其他型号／固件需要重新取证。关闭 OEM 屏保计时也会停掉该计时下的自动相框，手动相框仍保留。没有承诺去除视频应用内广告、永久无广告，或固定释放多少内存；也没有宣称所有附加功能都完成实测。
 
@@ -101,4 +106,4 @@ python3 tools/libretv-bridge/build.py --help
 
 测试使用临时目录内的模拟 ADB，不连接电视；GitHub Actions 运行同样的离线测试，并独立构建、核验原创辅助 APK。测试覆盖 UTF-8 配置暂存、传输中断和保留新历史的回退，不能代替真机验证。增加固件配置时提供脱敏型号／版本、原机产物哈希、设置语义和验证范围，不上传原机二进制或私人素材。
 
-感谢 [Tigris](https://github.com/lesnolie/Tigris)、[LibreTV](https://github.com/LibreSpark/LibreTV)、[DpadTV](https://github.com/AresCNZJ/DpadTV)。本仓库的原创指引、脚本与本机连接服务采用 [MIT](LICENSE)；第三方项目保留各自许可证，本仓库不分发其 APK 或源码。
+本仓库的原创指引、脚本与本机连接服务采用 MIT。第三方项目各自发布 APK 或源码，并采用各自的许可证。[本仓库许可证](LICENSE) · [Tigris](https://github.com/lesnolie/Tigris) · [Marco Movie](https://github.com/Pilipala9919/MarcoMovie) · [LibreTV](https://github.com/LibreSpark/LibreTV) · [DpadTV](https://github.com/AresCNZJ/DpadTV)

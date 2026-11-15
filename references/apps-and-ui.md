@@ -1,4 +1,4 @@
-# 应用安装、LibreTV 与新鲜 UI
+# 电视应用安装与界面验证
 
 ## 来源和兼容性
 
@@ -9,6 +9,8 @@ adb -s "$TV_SERIAL" install -r <verified-release.apk>
 ```
 
 不因更新失败自动 uninstall，避免丢配置。不要把第三方 APK 重新托管成 skill 的附件。
+
+已选择切换观影应用时，可用 Marco Movie TV 直连用户已有的点播接口。[Marco Movie TV 安装与验证流程](marco-movie-tv.md)
 
 ## LibreTV／DpadTV
 
