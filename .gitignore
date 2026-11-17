@@ -31,8 +31,13 @@ toolchain/
 private/
 signing/
 signing-password.txt
-# Original helper manifest is source; generated XML and user preferences stay private.
+# Helper source files with explicitly tracked XML and JSON.
 !tools/libretv-bridge/AndroidManifest.xml
+!tools/android-tv-installer/AndroidManifest.xml
+!tools/android-tv-installer/upstream-lock.json
+!tools/android-tv-installer/res/drawable/tv_banner.xml
+!tools/android-tv-installer/res/drawable/tv_icon.xml
+!tools/android-tv-installer/res/values/styles.xml
 __pycache__/
 *.py[cod]
 .DS_Store

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="setup_background">#11151D</color>
+    <string name="app_name">星爵老灯tvskill</string>
+    <style name="TvSetupTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:colorAccent">#D8FA56</item>
+        <item name="android:windowBackground">@color/setup_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:navigationBarColor">#11151D</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+</resources>

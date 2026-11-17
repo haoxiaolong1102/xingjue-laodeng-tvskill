@@ -1,0 +1,12 @@
+星爵老灯tvskill · 第三方来源
+
+Tigris 1.8 由 lesnolie 开发，MIT。
+APK 内保留上游二进制和签名，Tigris-LICENSE.txt 与 Tigris-THIRD-PARTY.txt 随附。
+https://github.com/lesnolie/Tigris/releases/tag/v1.8
+
+Marco 开放片单基于 Pilipala9919 的 Marco Movie TV 0.5.23，GPL-3.0。
+这是单独应用 ID、独立签名的衍生版本。对应源代码和构建方法见 Marco-Open-Films-TVSkill-1.1.0-source.zip。
+https://github.com/Pilipala9919/MarcoMovie/releases/tag/android-tv-v0.5.23
+
+影片按 CC BY 3.0 分发，逐片署名和授权见《开放影片许可与来源》。
+完整 APK 中的 assets/licenses/ 和 U 盘的「开源许可」含上述材料。复制发行时保留这些文件。

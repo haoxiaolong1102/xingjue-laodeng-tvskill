@@ -6,6 +6,16 @@
 
 **星爵老灯tvskill** 把一台红米电视的实际改造经验整理成可复用的 Codex Skill。用 **Tigris** 打造大时钟主页和个性背景，通过 ADB 排查广告触发与后台负担，还可以配置 **Marco Movie TV** 或 **LibreTV／DpadTV** 观影入口。
 
+## 下载安卓电视安装包 v1.1.0
+
+[下载 Android TV APK（159.2 MiB）](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/download/v1.1.0/Xingjue-TVSkill-Setup-1.1.0.apk) · [安装说明](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/download/v1.1.0/Xingjue-TVSkill-Setup-1.1.0-guide.txt) · [发布页与校验文件](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/tag/v1.1.0)
+
+适用 Android 9 及以上的 ARM 电视。把 APK 拷到 U 盘，插入电视，在文件管理器或「电视管家 → U 盘安装包」中选中 APK，按电视提示确认。打开「星爵老灯tvskill」后，可分别安装 Tigris 大时钟桌面和 Marco 开放片单。随包的《大雄兔》和《钢铁之泪》可直接离线播放，无需 AppleCMS 地址。
+
+「桌面与广告设置」提供系统设置入口，默认主页和广告开关由电视固件决定。安装与离线起播已在 Android TV 12 模拟器验证，红米 A50 的开机和静置广告效果需在实际固件上核对。
+
+[安装助手源码（MIT）](tools/android-tv-installer/) · [Marco 开放片单对应源码（GPL-3.0）](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/download/v1.1.0/Marco-Open-Films-TVSkill-1.1.0-source.zip) · [开放影片授权与署名](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/download/v1.1.0/OPEN-FILMS-LICENSES.txt)
+
 ## 桌面与观影
 
 - **Tigris** 提供大时钟、应用入口、自定义背景和 Home 守护，打开电视就能看到自己设置的桌面。
@@ -23,7 +33,7 @@ Tigris、Marco Movie、LibreTV 和 DpadTV 是独立维护的开源项目。本 S
 - **连接故障修复**：区分演示站 502、接口不兼容和媒体失效；可使用原创电视本机连接服务，检查重启自动恢复，保留原片源与观看记录。
 - **恢复与验证**：设备绑定的设置计划、原值记录、冲突检查、新鲜 UI 截图、真实静置观察。
 
-## 安装和使用
+## 安装和使用 Codex Skill
 
 需要支持 skills 的 Codex 环境、Python **3.10+**、[Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) 中的 `adb`、Git，以及同网且由你授权调试的 Android 电视。
 
@@ -67,7 +77,7 @@ python3 scripts/tv_snapshot.py --serial "$TV_SERIAL" --output state/before.json
 
 各脚本支持 `--help`、`--adb`。详细执行和恢复步骤见 [SKILL.md](SKILL.md)；未知固件不能直接照抄示例设置。
 
-## 改用 Marco Movie TV
+## 在 Marco Movie TV 导入自己的片源
 
 从项目发布页选择 `-android-tv.apk`，确认电视的 Android 版本和 CPU 架构。安装后依次选择「导入我的配置」→「遥控输入」，填入你有权访问的 AppleCMS 点播接口，点「导入地址」。首页加载后，从电影分类选一部实际试播。片库和播放线路由导入的片源提供。[Marco Movie TV 安装、配置与红米实测](references/marco-movie-tv.md)
 
@@ -106,4 +116,4 @@ python3 tools/libretv-bridge/build.py --help
 
 测试使用临时目录内的模拟 ADB，不连接电视；GitHub Actions 运行同样的离线测试，并独立构建、核验原创辅助 APK。测试覆盖 UTF-8 配置暂存、传输中断和保留新历史的回退，不能代替真机验证。增加固件配置时提供脱敏型号／版本、原机产物哈希、设置语义和验证范围，不上传原机二进制或私人素材。
 
-本仓库的原创指引、脚本与本机连接服务采用 MIT。第三方项目各自发布 APK 或源码，并采用各自的许可证。[本仓库许可证](LICENSE) · [Tigris](https://github.com/lesnolie/Tigris) · [Marco Movie](https://github.com/Pilipala9919/MarcoMovie) · [LibreTV](https://github.com/LibreSpark/LibreTV) · [DpadTV](https://github.com/AresCNZJ/DpadTV)
+本仓库的原创指引、脚本、安装助手与本机连接服务采用 MIT。第三方项目采用各自的许可证。[本仓库许可证](LICENSE) · [Tigris](https://github.com/lesnolie/Tigris) · [Marco Movie](https://github.com/Pilipala9919/MarcoMovie) · [LibreTV](https://github.com/LibreSpark/LibreTV) · [DpadTV](https://github.com/AresCNZJ/DpadTV)

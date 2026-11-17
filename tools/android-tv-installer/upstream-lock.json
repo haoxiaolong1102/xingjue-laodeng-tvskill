@@ -1,0 +1,54 @@
+{
+  "apps": [
+    {
+      "title": "Tigris 大时钟桌面",
+      "package": "com.leslie.tvhome",
+      "activity": "com.leslie.tvhome.HomeActivity",
+      "version": "1.8",
+      "minSdk": 28,
+      "abis": [],
+      "asset": "tigris.apk",
+      "name": "Tigris.apk",
+      "url": "https://github.com/lesnolie/Tigris/releases/download/v1.8/Tigris.apk",
+      "sha256": "8b57e3fdc215974ad1a06a8e689fbe91cd6ad66786f179abdd462e784f5e7785",
+      "description": "大时钟、应用快捷入口和自定义壁纸。",
+      "guide": "安装后打开 Tigris。首次可选「以后再说」，先使用大时钟。回助手的「桌面与广告设置」安排默认主页，再按一次遥控器主页键核对。"
+    },
+    {
+      "title": "Marco Movie TV · 开放片单",
+      "package": "com.xingjue.tvskill.marco",
+      "activity": "com.pilipala.marcomovie.MainActivity",
+      "version": "0.5.23-tvskill.1",
+      "minSdk": 23,
+      "abis": [
+        "armeabi-v7a",
+        "arm64-v8a"
+      ],
+      "asset": "marco-tv.apk",
+      "name": "Marco-Open-Films-TVSkill-1.1.0.apk",
+      "description": "内置两部 Blender 开放电影，首次打开就能选片。",
+      "guide": "按「安装」并在电视弹窗确认。打开「Marco 开放片单」，在「发现」里选一部电影并按播放。随包影片支持离线。通过「添加新源」也可导入你有权访问的其他片源。",
+      "sha256": "0bfbbd5218f93fab2912dea861a86d1be748bcf0c17aef4aa7267ec3f5e21117"
+    }
+  ],
+  "notices": [
+    {
+      "name": "Tigris-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/lesnolie/Tigris/v1.8/LICENSE",
+      "sha256": "305ad54ebefc97aec1ced0667446ec4fdac6a04e4231e9a87d92aad6c4373b63"
+    },
+    {
+      "name": "Tigris-THIRD-PARTY.txt",
+      "url": "https://raw.githubusercontent.com/lesnolie/Tigris/v1.8/THIRD_PARTY_NOTICES.md",
+      "sha256": "049fcc219730f7d004a695bef079698641ef7fc331539abf83b0b883f4864449"
+    },
+    {
+      "name": "Marco-Open-Films-TVSkill-1.1.0-source.zip",
+      "sha256": "a6712ee0f632cfac13a01f5e08ecb1da1d5cd429381caaf5f9ccacec1008efe1"
+    },
+    {
+      "name": "OPEN-FILMS-LICENSES.txt",
+      "sha256": "7e2d1544847a6c571bb58ca475be6c975f512c7053af7ecffa36cb62606b06d9"
+    }
+  ]
+}
