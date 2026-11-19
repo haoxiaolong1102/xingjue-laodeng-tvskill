@@ -36,12 +36,14 @@ python3 "$TV_SKILL_DIR/scripts/tv_snapshot.py" --serial "$TV_SERIAL" --output "$
 | 开机广告、静置跳视频、系统广告开关 | 读 [已验证固件与广告路径](references/firmware-and-ads.md)，先区别触发场景 |
 | 大时钟桌面、Home 键、开机回桌面、背景图 | 读 [Tigris 与壁纸](references/launcher-wallpaper.md) |
 | 卡顿、内存、要求所有功能保留 | 读 [后台与性能](references/performance.md) |
-| Marco Movie TV、切换到 LibreTV 替代方案、为替代客户端导入片源 | 读 [Marco Movie TV 安装与片源配置](references/marco-movie-tv.md) |
+| Marco Movie TV、更新下载或安装失败、已有片源失效 | 读 [Marco Movie TV 安装、升级与片源配置](references/marco-movie-tv.md) |
 | LibreTV／DpadTV 或其他 APK | 读 [应用安装与界面验证](references/apps-and-ui.md) |
 | DpadTV 更新后重连、请求失败、演示站 502、重启后失联 | 读 [LibreTV 连接修复与本机服务](references/libretv-repair.md) |
 
 同时包含多个模式时按基线 → 广告根因 → 桌面 → 后台 → 应用 → 验证推进。
 不要安装与请求无关的应用，也不要把某一型号的包名列表套到所有电视。
+
+本机状态接口正常、推荐却为空或只剩搜索框时，继续检查电视到现有片源的连接。电脑能加载同一接口也需要电视侧验证。更新片源时核对客户端与本机服务各自使用的地址。[片库为空的排查步骤](references/libretv-repair.md#本机服务正常但片库为空)
 
 ## 3. 用原机证据决定修改
 

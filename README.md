@@ -6,6 +6,14 @@
 
 **星爵老灯tvskill** 把一台红米电视的实际改造经验整理成可复用的 Codex Skill。用 **Tigris** 打造大时钟主页和个性背景，通过 ADB 排查广告触发与后台负担，还可以配置 **Marco Movie TV** 或 **LibreTV／DpadTV** 观影入口。
 
+## 2026-11-19 连接与升级维护
+
+- **DpadTV** 补充本机服务正常、片库为空或退回搜索框的排查。核对电视端片源连接，同站备用入口验证通过后更新配置。
+- **Marco Movie TV** 补充官方电视版 0.5.26 原位升级、更新入口失败处理，以及现有片源地址的编辑方法。
+- **真机验证** 在红米 A50 上验证两款应用的片库、搜索、详情、实际播放和应用重开，用户确认两款画面与声音正常，原观看记录与续播点逐项核对。
+
+本次发布更新 Codex Skill 的操作流程与实测说明，电视安装助手当前发布版本为 **v1.1.0**。[完整更新记录](updates/2026-11-19.md) · [更新介绍图与发布页](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/tag/skill-2026.11.19)
+
 ## 下载安卓电视安装包 v1.1.0
 
 [下载 Android TV APK（159.2 MiB）](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/download/v1.1.0/Xingjue-TVSkill-Setup-1.1.0.apk) · [安装说明](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/download/v1.1.0/Xingjue-TVSkill-Setup-1.1.0-guide.txt) · [发布页与校验文件](https://github.com/haoxiaolong1102/xingjue-laodeng-tvskill/releases/tag/v1.1.0)
@@ -103,6 +111,7 @@ python3 scripts/tv_snapshot.py --serial "$TV_SERIAL" --output state/before.json
 | 连接修复（2026-10-28） | 原客户端安装包保持不变；本机服务在第二次授权重启后自动恢复，推荐／搜索／详情／续播通过复测，原历史保留 |
 | 更新后重连（2026-11-14） | HyperOS OS3.0.11.0.PSTAATV，DpadTV 原位升至 1.3.0，使用本机服务 1.2 验证推荐、搜索、视频首帧、音轨和续播，历史与原进度核对一致 |
 | Marco Movie TV（2026-11-14） | 同一台红米的 Android 9／32 位 ARM，电视版 0.5.23 直连既有 AppleCMS 片源，验证分类海报墙、1080p H.264 硬解、音轨和应用重开后续播 |
+| 连接与升级维护（2026-11-19） | HyperOS OS3.0.102.0.PSTAATV，DpadTV 1.3.0 恢复片库与搜索，Marco 官方电视版原位升级至 0.5.26；两款 1920×800 H.264 播放、音轨与应用重开通过核对，用户确认音画正常。见[本次更新](updates/2026-11-19.md) |
 
 其他型号／固件需要重新取证。关闭 OEM 屏保计时也会停掉该计时下的自动相框，手动相框仍保留。没有承诺去除视频应用内广告、永久无广告，或固定释放多少内存；也没有宣称所有附加功能都完成实测。
 
